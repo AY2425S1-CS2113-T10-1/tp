@@ -11,7 +11,7 @@ class InternshipListTest {
         InternshipList internshipList = new InternshipList();
         Internship internship = new Internship("Data", "ABC", "01/24", "06/24");
         internshipList.addInternship(internship);
-        internshipList.updateStatus(0, "Application Completed");
+        internshipList.updateField(0, "status", "Application Completed");
 
         assertEquals("Application Completed", internshipList.getInternship(0).getStatus());
     }

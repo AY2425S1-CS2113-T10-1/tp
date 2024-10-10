@@ -47,10 +47,18 @@ public class InternshipList {
         }
     }
 
-    // Method to update the status of applications, might not be needed
-    public void updateStatus(int index, String status) {
+    //@@author Ridiculouswifi
+
+    /**
+     * Updates the specified field with new values..
+     *
+     * @param index <code>Internship</code> index in <code>InternshipList</code>.
+     * @param field Specific attribute to update.
+     * @param value Updated value
+     */
+    public void updateField(int index, String field, String value) {
         if (index >= 0 && index < internships.size()) {
-            internships.get(index).updateStatus(status);
+            internships.get(index).updateField(field, value);
         } else {
             System.out.println("Invalid index");
         }
