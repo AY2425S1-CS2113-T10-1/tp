@@ -7,7 +7,7 @@ public class SortCommand extends Command {
     public void execute(ArrayList<String> args) {
         // Ensure that the args array contains at least one argument after "sort"
         if (args.size() == 0) {
-            System.out.println("No sorting option provided. Listing internships by ID.");
+            ui.showSortedInternships("none");
             internships.listAllInternships(); // Default to listing by original order (ID)
             return;
         }
@@ -17,15 +17,15 @@ public class SortCommand extends Command {
 
         switch (sortOption) {
         case "alphabet":
+            ui.showSortedInternships(sortOption);
             internships.listInternshipsSortedByRole(); // Sort by role alphabetically
-            System.out.println("Sorted internships by role alphabetically.");
             break;
         case "deadline":
+            ui.showSortedInternships(sortOption);
             internships.listInternshipsSortedByDeadline(); // Sort by deadline (start date, then end date)
-            System.out.println("Sorted internships by start date, then end date.");
             break;
         default:
-            System.out.println("Unknown or missing flag. Listing internships by ID.");
+            ui.showSortedInternships(sortOption);
             internships.listAllInternships(); // Default to listing by original order (ID)
         }
     }

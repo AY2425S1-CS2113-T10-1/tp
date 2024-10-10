@@ -1,11 +1,14 @@
 package seedu.duke;
 
+import seedu.ui.UiInternshipList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Comparator;
 
 public class InternshipList {
+    private static final UiInternshipList ui = new UiInternshipList();
     public ArrayList<Internship> internships;
 
     // Constructor
@@ -26,7 +29,7 @@ public class InternshipList {
             internships.remove(index);
             updateIds(); // Reassign IDs after removal
         } else {
-            System.out.println("Invalid index");
+            ui.showInvalidIndex();
         }
     }
 
@@ -42,29 +45,27 @@ public class InternshipList {
         if (index >= 0 && index < internships.size()) {
             return internships.get(index);
         } else {
-            System.out.println("Invalid index");
+            ui.showInvalidIndex();
             return null;
         }
     }
 
-    // Method to update the status of applications, might not be needed
+    //@@author Ridiculouswifi
+    // Method to update the status of applications
     public void updateStatus(int index, String status) {
         if (index >= 0 && index < internships.size()) {
             internships.get(index).updateStatus(status);
         } else {
-            System.out.println("Invalid index");
+            ui.showInvalidIndex();
         }
     }
 
     // Method to list all internships
     public void listAllInternships() {
         if (internships.isEmpty()) {
-            System.out.println("No internships found.");
+            ui.showEmptyInternshipList();
         } else {
-            for (Internship internship : internships) {
-                System.out.println(internship);
-                System.out.println("---------------------------------");
-            }
+            ui.showInternships(internships);
         }
     }
 
@@ -78,10 +79,7 @@ public class InternshipList {
         Collections.sort(sortedList, Comparator.comparing(Internship::getRole));
 
         // Display the sorted list without changing IDs
-        for (Internship internship : sortedList) {
-            System.out.println(internship);
-            System.out.println("---------------------------------");
-        }
+        ui.showInternships(sortedList);
     }
 
     // Method to list all internships sorted by start date, then end date
@@ -101,9 +99,6 @@ public class InternshipList {
         });
 
         // Display the sorted list without changing IDs
-        for (Internship internship : sortedInternships) {
-            System.out.println(internship);
-            System.out.println("---------------------------------");
-        }
+        ui.showInternships(sortedInternships);
     }
 }

@@ -12,6 +12,9 @@ public class UpdateCommand extends Command {
         String field = "";
         String value = "";
 
+        ui.clearInvalidFlags();
+        ui.clearUpdatedFields();
+
         for (String arg : args) {
             String[] words = arg.split(" ", 2);
             switch (words[INDEX_FIELD]) {
@@ -19,17 +22,19 @@ public class UpdateCommand extends Command {
             case "skills":
             case "role":
             case "company":
-            case "end":
+            case "from":
+            case "to":
                 field = words[INDEX_FIELD];
                 value = words[INDEX_DATA].replace(field, "").trim();
                 internships.getInternship(internshipIndex).updateField(field, value);
+                ui.addUpdatedField(field, value);
                 break;
             default:
-                System.out.println("Unknown flag: " + words[INDEX_FIELD]);
+                ui.addInvalidFlag(words[INDEX_FIELD]);
                 break;
             }
         }
-        System.out.println(internships.toString());
+        ui.showEditedInternship(internships.getInternship(internshipIndex), "update");
     }
 
     public String getUsage() {

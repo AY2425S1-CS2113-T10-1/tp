@@ -17,7 +17,7 @@ public class FilterCommand extends Command {
     @Override
     public void execute(ArrayList<String> args) {
         if (args.isEmpty()) {
-            System.out.println("Insufficient arguments.");
+            ui.showInsufficientArguments();
             return;
         }
 
@@ -36,7 +36,9 @@ public class FilterCommand extends Command {
         InternshipFieldGetter getter = fieldGetters.get(flag);
 
         if (getter == null) {
-            System.out.println("Unknown flag: " + flag);
+            ui.clearInvalidFlags();
+            ui.addInvalidFlag(flag);
+            ui.printInvalidFlags();
             return;
         }
 

@@ -12,47 +12,48 @@ public class AddCommand extends Command {
         String startDate = "01/01";
         String endDate = "01/01";
 
+        ui.clearInvalidFlags();
         for (String arg : args) {
             String[] words = arg.split(" ", 2);
             String flag = words[0];
             switch (flag) {
-            case "name":
+            case "role":
                 if (words.length > 1) {
                     role = words[INDEX_DATA];
                 } else {
-                    System.out.println("Role not specified.");
+                    ui.addInvalidFlag(flag);
                 }
                 break;
             case "company":
                 if (words.length > 1) {
                     company = words[INDEX_DATA];
                 } else {
-                    System.out.println("Company not specified.");
+                    ui.addInvalidFlag(flag);
                 }
                 break;
             case "from":
                 if (words.length > 1) {
                     startDate = words[INDEX_DATA];
                 } else {
-                    System.out.println("Start date not specified.");
+                    ui.addInvalidFlag(flag);
                 }
                 break;
             case "to":
                 if (words.length > 1) {
                     endDate = words[INDEX_DATA];
                 } else {
-                    System.out.println("End date not specified.");
+                    ui.addInvalidFlag(flag);
                 }
                 break;
             default:
-                System.out.println("Unknown flag: " + flag);
+                ui.addInvalidFlag(flag);
                 break;
             }
         }
 
         Internship newInternship = new Internship(role, company, startDate, endDate);
         internships.addInternship(newInternship);
-        System.out.println("Internship added: " + newInternship);
+        ui.showEditedInternship(newInternship, "add");
     }
 
     @Override
