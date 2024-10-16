@@ -30,18 +30,20 @@ public class InternshipList {
     /**
      * Returns whether the index given is within the boundaries of the list.
      */
-    private boolean isWithinBounds(int index) {
-        return index >= 0 && index < internships.size();
+    public boolean isWithinBounds(int index) {
+        if (index >= 0 && index < internships.size()) {
+            return true;
+        }
+        ui.showInvalidIndex();
+        return false;
     }
 
     // Method to remove an internship by index (0-based)
     public void removeInternship(int index) {
         if (isWithinBounds(index)) {
             internships.remove(index);
-            ui.showDeletedInternship(index);
+            ui.showDeletedInternship(index + 1);
             updateIds(); // Reassign IDs after removal
-        } else {
-            ui.showInvalidIndex();
         }
     }
 
@@ -56,10 +58,8 @@ public class InternshipList {
     public Internship getInternship(int index) {
         if (isWithinBounds(index)) {
             return internships.get(index);
-        } else {
-            ui.showInvalidIndex();
-            return null;
         }
+        return null;
     }
 
     //@@author Ridiculouswifi
@@ -117,32 +117,48 @@ public class InternshipList {
         return internships.size();
     }
 
-    // Method to list all internships in sorted order without modifying the IDs
+    // Method to list all internships in sorted order by role (case-insensitive)
     public void listInternshipsSortedByRole() {
         ArrayList<Internship> sortedList = new ArrayList<>(internships);
-        Collections.sort(sortedList, Comparator.comparing(Internship::getRole));
+
+        // Sort roles alphabetically, ignoring case sensitivity
+        Collections.sort(sortedList, Comparator.comparing(internship -> internship.getRole().toLowerCase()));
 
         // Display the sorted list without changing IDs
         ui.showInternships(sortedList);
     }
 
-    // Method to list all internships sorted by start date, then end date
+    // Method to list all internships sorted by start date (year first), then end date
     public void listInternshipsSortedByDeadline() {
         ArrayList<Internship> sortedInternships = new ArrayList<>(internships);
-        Collections.sort(sortedInternships, new Comparator<Internship>() {
-            @Override
-            public int compare(Internship i1, Internship i2) {
-                // Compare start dates
-                int startComparison = i1.getStartDate().compareTo(i2.getStartDate());
-                if (startComparison != 0) {
-                    return startComparison;
-                }
-                // If start dates are equal, compare end dates
-                return i1.getEndDate().compareTo(i2.getEndDate());
+
+        Collections.sort(sortedInternships, (i1, i2) -> {
+            // First compare start dates (year then month)
+            int startComparison = compareYearMonth(i1.getStartDate(), i2.getStartDate());
+            if (startComparison != 0) {
+                return startComparison;
             }
+            // If start dates are equal, compare end dates (year then month)
+            return compareYearMonth(i1.getEndDate(), i2.getEndDate());
         });
 
         // Display the sorted list without changing IDs
         ui.showInternships(sortedInternships);
+    }
+
+    // Helper method to compare YearMonth strings in "MM/yy" format (year first, then month)
+    private int compareYearMonth(String date1, String date2) {
+        String[] parts1 = date1.split("/");
+        String[] parts2 = date2.split("/");
+
+        int year1 = Integer.parseInt(parts1[1]);
+        int year2 = Integer.parseInt(parts2[1]);
+        int month1 = Integer.parseInt(parts1[0]);
+        int month2 = Integer.parseInt(parts2[0]);
+
+        if (year1 != year2) {
+            return Integer.compare(year1, year2);
+        }
+        return Integer.compare(month1, month2);
     }
 }

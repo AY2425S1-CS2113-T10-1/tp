@@ -49,6 +49,10 @@ public class EasInternship {
             command.setInternshipList(internshipList);
             ArrayList<String> commandArgs = parser.parseData(command, input);
 
+            if (commandArgs == null) {
+                continue;
+            }
+
             try {
                 command.execute(commandArgs);
             } catch (Exception e) {

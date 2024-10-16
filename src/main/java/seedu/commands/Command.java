@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Command {
     protected static final int INDEX_FIELD = 0;
     protected static final int INDEX_DATA = 1;
-    protected static UiCommand ui = new UiCommand();
+    protected static UiCommand uiCommand = new UiCommand();
     protected InternshipList internships;
 
     public void setInternshipList(InternshipList internships) {

@@ -1,6 +1,9 @@
 package seedu.ui;
 
+import seedu.commands.Command;
 import seedu.duke.Internship;
+
+import java.util.ArrayList;
 
 //@@author Ridiculouswifi
 /**
@@ -130,10 +133,10 @@ public class UiCommand extends Ui {
             System.out.println("No sorting option provided. Listing internships by ID.");
             break;
         case "alphabet":
-            System.out.println("Sorted internships by role alphabetically.");
+            System.out.println("Sorted internships by role alphabetically (case-insensitive).");
             break;
         case "deadline":
-            System.out.println("Sorted internships by start date, then end date.");
+            System.out.println("Sorted internships by start date (year first), then end date.");
             break;
         default:
             // Handling invalid sorting options
@@ -149,8 +152,20 @@ public class UiCommand extends Ui {
      */
     public String getSortUsageMessage() {
         return "Usage: sort [alphabet | deadline]\n" +
-                "alphabet: Sort internships alphabetically by role.\n" +
-                "deadline: Sort internships by start date, then end date.";
+                "alphabet: Sort internships alphabetically by role (case-insensitive).\n" +
+                "deadline: Sort internships by start date (year first), then end date.";
+    }
+
+    public void showCommands(ArrayList<Command> commands) {
+        printHeadDivider();
+        for (Command command : commands) {
+            System.out.println(command.getUsage());
+            printDivider();
+        }
+        System.out.println("""
+                exit
+                Usage: exit""");
+        printTailDivider();
     }
 
     public String getInvalidFlags() {

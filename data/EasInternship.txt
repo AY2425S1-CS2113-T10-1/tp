@@ -1,5 +1,4 @@
 1 | ABC | XYZ | 01/01 | 01/01 | No Skills Entered | Application Pending
-2 | finance accountant | BBB | 01/01 | 01/01 | No Skills Entered | Application Pending
-3 | engineer |  ABS | 01/01 | 01/01 | No Skills Entered | Application Pending
-4 | software engineer | abs | 01/01 | 03/24 | python | Application Completed
-5 | lawyer | lolo pte ltd | 04/23 | 01/01 | No Skills Entered | Application Pending
+2 | software engineer | abs | 01/01 | 03/24 | python | Application Completed
+3 | lawyer | lolo pte ltd | 04/23 | 01/01 | No Skills Entered | Application Pending
+4 | Technician | Nokia | 12/22 | 12/30 | No Skills Entered | Application Pending

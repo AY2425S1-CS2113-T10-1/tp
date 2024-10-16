@@ -128,29 +128,28 @@ Skills: Python, SQL
 
 This feature allows you to sort and list all the internships saved in your database. The default display format is in increasing order of their ID’s (based on time of creation)
 
-Users can specify a flag to display them in alphabetical order of their role titles or by deadline.
+Users can specify a flag to display them in alphabetical order (regardless of uppercase or lowercase) of their role titles or by deadline.
 
 **Format:**
 
-`list`
 
 `sort {field}`
 
 **Example:**
 
-`list`
+`sort -deadline`
 
 ```
-ID: 01
+ID: 02
 Role: Software Engineer Intern
 Company: Google
-Duration: Not Stated
+Duration: 05/23 to 08/25
 Skills: Not Stated
 
-ID: 02
+ID: 01
 Role: Embedded Software Engineer Intern
 Company: Continental
-Duration: 05/25 to 08/25
+Duration: 05/24 to 08/24
 Skills: Not Stated
 ```
 `sort -alphabet`

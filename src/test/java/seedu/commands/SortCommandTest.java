@@ -20,8 +20,8 @@ class SortCommandTest {
 
         // Add some internships to the list for testing
         Internship internship1 = new Internship("Software Engineer", "Google", "01/24", "06/24");
-        Internship internship2 = new Internship("Data Scientist", "Facebook", "02/24", "08/24");
-        Internship internship3 = new Internship("Product Manager", "Amazon", "01/24", "09/24");
+        Internship internship2 = new Internship("Data Scientist", "Facebook", "02/23", "08/23");
+        Internship internship3 = new Internship("Product Manager", "Amazon", "01/23", "09/23");
 
         internshipList.addInternship(internship1);
         internshipList.addInternship(internship2);

@@ -46,6 +46,10 @@ public class Ui {
         printTailDivider();
     }
 
+    public void showEmptyFlags() {
+        showOutput("No flag provided");
+    }
+
     /**
      * Prints when unknown command is given.
      *
